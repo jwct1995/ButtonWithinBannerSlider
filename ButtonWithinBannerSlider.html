@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+/* start slider */
+.mySlides{
+	width: 100%;
+	height:100%;
+}
+/*start left right button*/
+button[name="btnC"]{
+	color: #fff;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%,-50%);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+}
+button[name="btnC"]:hover {
+	color: #000;
+    background-color: #b7b7b7;
+}
+/*end left right button*/
+/* end slider */
+/* start overlayer button */
+
+#divbutton{
+    background-color: #7fffd461;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    display: block;
+}
+#btn1{background-color: #7575ff69;}
+#btn2{background-color: #ffc0cb7a;}
+#divbutton div{
+	display: inline-block;
+	border-radius: 30px;
+	border-style: solid;
+    border-color: #676767;
+	margin:5px;
+    padding: 10px 50px 10px 50px;
+    cursor: pointer;
+}
+
+#divbutton div:hover{
+	background-color: white;
+	color: black;
+	border-color: white;
+	font-weight: bold;
+}
+
+/*mobile and table detect*/
+@media (pointer:none), (pointer:coarse) {
+	#divbutton
+	{
+		width: 5%;
+		left: 8%;
+		background-color: #fbff0038;
+	}
+	#btn1{
+		width: 50px;
+	}
+	#btn2{
+		width: 120px;
+	}
+}
+
+/* end overlayer button */
+
+</style>
+
+<body>
+
+<center>
+<!--start slider-->
+<div id="slider" style="width: 700px; height: 200px; position: relative;">
+<!--start image-->
+<img class="mySlides" src="https://www.w3schools.com/w3images/workbench.jpg">
+<img class="mySlides" src="https://www.w3schools.com/w3images/coffee.jpg">
+<img class="mySlides" src="https://www.w3schools.com/w3images/sound.jpg">
+<!--end image-->
+<!--start left right button-->
+<button name="btnC" style="left:0%;" class="button-left" onclick="plusDivs(-1)">&#10094;</button>
+<button name="btnC" style="right:0%;" class="button-right" onclick="plusDivs(1)">&#10095;</button>
+<!--end left right button-->
+<!--end slider-->
+
+<!--start overlayer button-->
+	<div id="divbutton">
+		<div id="btn1" onclick="bclickA()">
+			News
+		</div>	
+		<div id="btn2" onclick="location.href = 'https://tpmc.org.sg/news-events/upcoming-events/';">
+			Upcoming Events
+		</div>
+	</div>
+<!--end overlayer button-->
+</div>
+</center>
+
+<div id="txttest">
+</div>
+
+
+</body>
+
+
+
+<script id="js">
+//start slider 
+var slideIndex = 1;
+var timems=2000;
+
+//auto next
+let timerId = setInterval(() => showDivs(slideIndex += 1), timems);
+
+//call at load 
+showDivs(slideIndex);
+
+//next or previous
+function plusDivs(n) 
+{
+  showDivs(slideIndex += n);
+  clearInterval(timerId);
+  timerId = setInterval(() => showDivs(slideIndex += 1), timems);
+}
+//calculate
+function showDivs(n) 
+{
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) 
+  	{slideIndex = 1}
+  if (n < 1) 
+  	{slideIndex = x.length}
+  for (i = 0; i < x.length; i++) 
+  {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+
+ //var txt = document.getElementById("txttest").innerHTML;
+ // document.getElementById("txttest").innerHTML = txt+"<br>"+slideIndex+"..."+n;  
+  
+
+}
+//end slider
+
+
+//start overlayer button
+function bclickA()
+{
+	location.href = 'https://tpmc.org.sg/news-post/';
+}
+//end overlayer button
+
+</script>
+
+
+
+<!--start display code-->
+<style type="text/css">
+	p[name="txtp"]{margin-top: 40px;}
+	textarea{width: 90%;}
+</style>
+<script type="text/javascript">
+$(function()
+{
+	var css=$("style").html();
+	$("#txtcss").html(css);
+
+	var js=$("#js").html();
+	$("#txtjs").html(js);
+
+	var html=$("#slider").html();
+	$("#txthtml").html(html);
+
+	$('textarea').each(function() 
+	{
+        $(this).height($(this).prop('scrollHeight'));
+    });
+});
+
+</script>
+
+<div>
+	<p name="txtp">CSS</p>
+	<textarea id="txtcss"style="display: block;">
+		
+	</textarea>
+	<p name="txtp">JavaScript</p>
+	<textarea id="txtjs" style="display: block;">
+		
+	</textarea>
+	<p name="txtp">HTML</p>
+	<textarea id="txthtml" style="display: block;">
+		
+	</textarea>
+</div>
+<!--end display code-->
+</html>
